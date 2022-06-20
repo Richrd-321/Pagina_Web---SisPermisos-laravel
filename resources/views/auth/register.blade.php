@@ -15,7 +15,7 @@
     <!--    FORMULARIO  -->
     <div class="md:w-1/2 p-6 bg-white  rounded-lg shadow-xl">
         <!--    REGISTRO  -->
-        <form action="#" method="GET">
+        <form action="{{ route('register')}}" method="POST">
             @csrf
             <div class="mb-5">
                 <!--    Nombre    -->
@@ -25,7 +25,13 @@
                     type="text"
                     placeholder="Tu Nombre"
                     name="name"
-                    class="border p-3 w-full rounded-lg ">
+                    class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
+                    value="{{ old('name') }}"
+                />
+                @error('name')
+                    <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                @enderror
+                
             </div>
 
             <div class="mb-5">
@@ -36,7 +42,14 @@
                     type="text"
                     placeholder="Tu Nombre de Usuario"
                     name="username"
-                    class="border p-3 w-full rounded-lg ">
+                    class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
+                    value="{{ old('name') }}"
+                />
+
+                @error('username')
+                    <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                @enderror
+
             </div>
 
             <div class="mb-5">
@@ -47,7 +60,13 @@
                     type="email"
                     placeholder="Tu Email de Registro"
                     name="email"
-                    class="border p-3 w-full rounded-lg ">
+                    class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
+                    value="{{ old('name') }}"
+                />
+
+                @error('email')
+                    <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mb-5">
@@ -58,7 +77,13 @@
                     type="password"
                     placeholder="Contraseña de Registro"
                     name="password"
-                    class="border p-3 w-full rounded-lg ">
+                    class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
+                    value="{{ old('name') }}"
+                />
+
+                @error('password')
+                    <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mb-5">
@@ -69,7 +94,9 @@
                     type="password"
                     placeholder="Repite ru Contraseña"
                     name="password_confimation"
-                    class="border p-3 w-full rounded-lg ">
+                    class="border p-3 w-full rounded-lg "
+                />
+
             </div>
 
             <!--        BOTON       -->
@@ -79,8 +106,6 @@
                 class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer 
                 uppercase font-bold w-full p-3 text-white rounded-lg"
             />
-
-        
         
         </form>
     </div>

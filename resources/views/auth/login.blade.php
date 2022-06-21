@@ -1,44 +1,58 @@
 @extends('layouts.app')
 
 @section('titulo')
-    Login
+    Iniciar Sesión
+@endsection
 
 @section('contenido')
 
 
+    <div class="md:flex md:justify-center md:gap-10 md:items-center">
 
-
-
-<div class="container">
-    
-
-    <!--    TITULO  -->
-    <h1 class="fw-bold text-5xl text-center py-3">Login</h1>
-
-    <div class="row">
-
-        <div class="col">
-            <img src="/resources/views/img/introSeda.png" width="48" alt="Logo_SEDA">
+        <div class="md:w-6/12 p-5">
+            <img src="{{ asset('img/introSeda.jpeg')}}" width="512" height="490" alt="imagen login de usuarios">
         </div>
 
-        <div class="col">
+        <div class="md:w-1/2 bg-white p-6 rounded-lg shadow-xl">
             <!--    TITULO ESPECIFICO  -->
             <h4 class="fw-bold text-5xl text-center py-3">Bienvenido</h4>
-            <!--    LOGIN  {{route('boletas')}}-->
-            <form class="mt-8 space-y-6" action="#" method="GET">
+            <!--    LOGIN  -->
+            <form novalidate>
                 <div class="rounded-md shadow-sm ">
-                    <div class="mb-4">
+                    <div class="mb-5">
                         <!--    Correo    -->
-                        <label for="email-address" class="form-label">Correo electrónico</label>
-                        <input id="email-address" class="form-control" name="email" type="email" autocomplete="email"
-                            placeholder="Tu Correo">
+                        <label for="email" class="mb-2 block uppercase font-bold">Email</label>
+                        <input 
+                            id="email"
+                            type="email"
+                            name="email"  
+                            autocomplete="email"
+                            placeholder="Tu Email"
+                            class="border p-3 w-full rounded-lg @error('email') border-red-500 @enderror" 
+                            value="{{ old('email') }}"
+                        />
+
+                        @error('email')
+                            <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                        @enderror
+
                     </div>
 
                     <div class="mb-4">
                         <!--    Contraseña    -->
-                        <label for="password" class="form-label">Contraseña</label>
-                        <input name="password" type="password" autocomplete="current-password" class="form-control"
-                            placeholder="Tu Contraseña">
+                        <label for="password" class="mb-2 block uppercase font-bold">Contraseña</label>
+                        <input 
+                            id="password"
+                            name="password" 
+                            type="password" 
+                            placeholder="Tu Contraseña"
+                            autocomplete="current-password" 
+                            class="border p-3 w-full rounded-lg @error('password') border-red-500 @enderror"
+                        />
+
+                        @error('password')
+                            <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="mb-4 form-check">
@@ -58,7 +72,7 @@
                         </div>
 
                         <div class="text-sm">
-                            <a href="{{route('boletas')}}" class="font-medium text-indigo-600 hover:text-indigo-500"> Olvidó su contraseña?
+                            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Olvidó su contraseña?
                             </a>
                         </div>
                     </div>
@@ -74,7 +88,8 @@
                                         aria-hidden="true">
                                         <path fill-rule="evenodd"
                                             d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                                            clip-rule="evenodd" />
+                                            clip-rule="evenodd" 
+                                        />
                                     </svg>
                                 </span>
                                 Iniciar Sesión
@@ -85,66 +100,62 @@
 
                     <!--    No tienes cuenta?    -->
                     <div class="my-3">
-                        <span>¿No tienes cuenta? <a href="{{route('register.index')}}" class="font-medium text-indigo-600 hover:text-indigo-500">Registrate</a> </span>
+                        <span>¿No tienes cuenta? <a href="{{route('register')}}" class="font-medium text-indigo-600 hover:text-indigo-500">Registrate</a> </span>
 
                         <br>
 
                         <span><a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Recuperar Contraseña</a></span>
                     </div>
 
+                    <!--    LOGIN CON REDES SOCIALES   -->
+                    <div class="container w-100 my-5">
+                        <div class="row text-center">
+                            <div class="col-12">Iniciar Sesión</div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <!--    Facebook   -->
+                                <button class="btn btn-outline-primary w-100 my-1">
+                                    <div class="row align-items-center">
+                                        <div class="col-2">
+                                            <img src="" width="32" alt="">
+                                        </div>
+
+                                        <div class="col-10 text-center">
+                                            Facebook
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="col">
+                                <!--    Google   -->
+                                <button class="btn btn-outline-danger w-100 my-1">
+                                    <div class="row align-items-center">
+                                        <div class="col-2">
+                                            <img src="" width="32" alt="">
+                                        </div>
+
+                                        <div class="col-10 text-center">
+                                            Google
+                                        </div>
+                                    </div>
+
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
 
-        </div>
+            </div>
 
 
         </form>
 
-        <!--    LOGIN CON REDES SOCIALES   -->
-        <div class="container w-100 my-5">
-            <div class="row text-center">
-                <div class="col-12">Iniciar Sesión</div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <!--    Facebook   -->
-                    <button class="btn btn-outline-primary w-100 my-1">
-                        <div class="row align-items-center">
-                            <div class="col-2">
-                                <img src="" width="32" alt="">
-                            </div>
-
-                            <div class="col-10 text-center">
-                                Facebook
-                            </div>
-                        </div>
-                    </button>
-                </div>
-
-                <div class="col">
-                    <!--    Google   -->
-                    <button class="btn btn-outline-danger w-100 my-1">
-                        <div class="row align-items-center">
-                            <div class="col-2">
-                                <img src="" width="32" alt="">
-                            </div>
-
-                            <div class="col-10 text-center">
-                                Google
-                            </div>
-                        </div>
-
-                    </button>
-                </div>
-            </div>
-
-        </div>
-
-
-
 
     </div>
-</div>
-</div>
 
 @endsection

@@ -42,8 +42,8 @@
                     type="text"
                     placeholder="Tu Nombre de Usuario"
                     name="username"
-                    class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
-                    value="{{ old('name') }}"
+                    class="border p-3 w-full rounded-lg @error('username') border-red-500 @enderror"
+                    value="{{ old('username') }}"
                 />
 
                 @error('username')
@@ -60,8 +60,8 @@
                     type="email"
                     placeholder="Tu Email de Registro"
                     name="email"
-                    class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
-                    value="{{ old('name') }}"
+                    class="border p-3 w-full rounded-lg @error('email') border-red-500 @enderror"
+                    value="{{ old('email') }}"
                 />
 
                 @error('email')
@@ -77,8 +77,8 @@
                     type="password"
                     placeholder="Contraseña de Registro"
                     name="password"
-                    class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
-                    value="{{ old('name') }}"
+                    class="border p-3 w-full rounded-lg @error('password') border-red-500 @enderror"
+                    
                 />
 
                 @error('password')
@@ -88,12 +88,12 @@
 
             <div class="mb-5">
                 <!--    Repetir Contraseña    -->
-                <label for="password_confimation" class="mb-2 block uppercase font-bold">Repetir Contraseña</label>
+                <label for="password_confirmation" class="mb-2 block uppercase font-bold">Repetir Contraseña</label>
                 <input 
-                    id="password_confimation"
+                    id="password_confirmation"
                     type="password"
                     placeholder="Repite ru Contraseña"
-                    name="password_confimation"
+                    name="password_confirmation"
                     class="border p-3 w-full rounded-lg "
                 />
 

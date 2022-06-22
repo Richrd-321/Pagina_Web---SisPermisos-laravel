@@ -17,7 +17,9 @@
             <!--    TITULO ESPECIFICO  -->
             <h4 class="fw-bold text-5xl text-center py-3">Bienvenido</h4>
             <!--    LOGIN  -->
-            <form novalidate>
+            <form method="POST" action="{{ route('login')}}" novalidate>
+                @csrf
+
                 <div class="rounded-md shadow-sm ">
                     <div class="mb-5">
                         <!--    Correo    -->
@@ -55,10 +57,18 @@
                         @enderror
                     </div>
 
+                    @if (session('mensaje'))
+                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">
+                            {{ session('mensaje') }}
+                        </p>
+                    @endif
+
+                    <!--
                     <div class="mb-4 form-check">
                         <input type="checkbox" name="connected" class="form-check-input" id="">
                         <label for="connected" class="form-chek-label">Mantenerme conectado</label>
                     </div>
+                -->
 
                 </div>
 
@@ -66,23 +76,31 @@
                 <div class="d-grid">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
-                            <input id="remember-me" name="remember-me" type="checkbox"
+                            <input name="remember" type="checkbox"
                                 class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                            <label for="remember-me" class="ml-2 block text-sm text-gray-900"> Recordarme </label>
+                            <label class="text-gray-900 text-sm"> Recordarme </label>
                         </div>
 
                         <div class="text-sm">
-                            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Olvidó su contraseña?
+                            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> ¿Olvidó su contraseña?
                             </a>
                         </div>
                     </div>
 
                     <div class="text-center p-4">
 
+                        <input 
+                            type="submit"
+                            value="Iniciar Sesión"
+                            class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer 
+                            uppercase font-bold w-full p-3 text-white rounded-lg"
+                        />
+
+                        <!--
                         <button type="submit" class="btn btn-primary btn-lg">
                             <div>
                                 <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-                                    <!-- Heroicon name: solid/lock-closed -->
+                                     //Heroicon name: solid/lock-closed 
                                     <svg class="h-10 w-5 text-indigo-500 group-hover:text-indigo-400 text-end "
                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                                         aria-hidden="true">
@@ -96,6 +114,7 @@
                             </div>
 
                         </button>
+                        -->
                     </div>
 
                     <!--    No tienes cuenta?    -->
@@ -108,6 +127,7 @@
                     </div>
 
                     <!--    LOGIN CON REDES SOCIALES   -->
+                    
                     <div class="container w-100 my-5">
                         <div class="row text-center">
                             <div class="col-12">Iniciar Sesión</div>

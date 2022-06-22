@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BoletaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PostController;
@@ -29,4 +30,8 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
-Route::get('/{User:username}', [PostController::class, 'index'])->name('posts.index');
+Route::get('/{user:username}', [PostController::class, 'index'])->name('posts.index');
+//Route::get('/principal', [PostController::class, 'index'])->name('posts.index');
+
+Route::get('/principal/boleta', [BoletaController::class, 'index'])->name('boletas');
+Route::post('/principal/boleta', [BoletaController::class, 'store']);

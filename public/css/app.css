@@ -585,9 +585,6 @@ video {
 .mb-4 {
   margin-bottom: 1rem;
 }
-.ml-2 {
-  margin-left: 0.5rem;
-}
 .mt-10 {
   margin-top: 2.5rem;
 }
@@ -722,6 +719,9 @@ video {
 }
 .font-medium {
   font-weight: 500;
+}
+.font-normal {
+  font-weight: 400;
 }
 .font-black {
   font-weight: 900;

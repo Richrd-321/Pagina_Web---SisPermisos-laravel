@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('boletas', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('fecha');
+            $table->string('oficina');
+            $table->string('motivo');
+            $table->string('mensaje');
             $table->timestamps();
         });
     }

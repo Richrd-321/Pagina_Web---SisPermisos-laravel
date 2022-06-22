@@ -12,9 +12,11 @@ class PostController extends Controller
         $this->middleware('auth');
     }
 
+    //public function index(User $user)
     public function index(User $user)
     {
-        dd($user->username);
-        return view('dashboard');
+        return view('layouts.dashboard', [
+            'user' => $user
+        ]);
     }
 }

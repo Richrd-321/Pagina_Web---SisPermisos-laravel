@@ -126,7 +126,7 @@
                         <span><a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Recuperar Contraseña</a></span>
                     </div>
 
-                    <!--    LOGIN CON REDES SOCIALES   -->
+                    <!--    LOGIN CON REDES SOCIALES   
                     
                     <div class="container w-100 my-5">
                         <div class="row text-center">
@@ -135,7 +135,7 @@
 
                         <div class="row">
                             <div class="col">
-                                <!--    Facebook   -->
+                                <!--    Facebook   
                                 <button class="btn btn-outline-primary w-100 my-1">
                                     <div class="row align-items-center">
                                         <div class="col-2">
@@ -150,7 +150,7 @@
                             </div>
 
                             <div class="col">
-                                <!--    Google   -->
+                                <!--    Google   
                                 <button class="btn btn-outline-danger w-100 my-1">
                                     <div class="row align-items-center">
                                         <div class="col-2">
@@ -177,5 +177,6 @@
 
 
     </div>
+    -->
 
 @endsection

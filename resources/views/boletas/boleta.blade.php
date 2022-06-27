@@ -7,137 +7,141 @@
 @section('contenido')
 
 
-    <div class="container-center w-80 border p-4 m-4">
+    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
         <!--    BOLETA DE AUTORIZACION DE SALIDA -->
-        <section class="bg-light py-5">
-            <div class="container bg-warning p-5">
-                <div class="row">
+
+        <!--    REGISTRO  -->
+        <div class="form-group mb-6">
+            <h4 class="text-center">DATOS:</h4>
+            <form action="{{ route('boletas')}}" method="POST">
+                @csrf
+                <div class="mb-5">
+                    <!--    NOMBRE  -->
+                    <div class="flex gap-3 items-center">
+                        <i class="fas fa-user input-group-text"></i>
+                        <label for="name" class="block uppercase font-bold">Nombre</label>  
+                    </div>
+                        
+                    <input 
+                        id="nombre"
+                        type="text"
+                        placeholder="Tu Nombre"
+                        name="nombre"
+                        class="border p-3 w-full rounded-lg @error('nombre') border-red-500 @enderror"
+                        value="{{ old('nombre') }}"
+                    />
+                    @error('name')
+                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                    @enderror
+                </div>
                     
-
-                    <h4>DATOS:</h4>
-
-                    <form action="{{ route('boletas') }}" method="POST">
-                        @csrf
-                        <!--    NOMBRE  -->
-                        <div class="col">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <i class="fas fa-user input-group-text"></i>
-                                </div>
-
-                                <input type="text" class="form-control" placeholder="Tu Nombre" aria-label="Username"
-                                    aria-describedby="basic-addon1" name="nombre">
-                            </div>
-
-                        </div>
-
-                        <!--    CALENDARIO  -->
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <!--<i class="fas fa-user input-group-text"></i>-->
-                                <i class="fas fa-calendar input-group-text"></i>
-                            </div>
-
-                            <input type="datetime-local" name="fecha" class="form-control" placeholder="Tu Oficina"
-                                aria-describedby="basic-addon1">
-                        </div>
-
-                        <!--    OFICINA  -->
-                        <div class="input-group mb-3">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <i class="fas fa-solid fa-building input-group-text"></i>
-
-                                </div>
-
-                                <input type="text" class="form-control" name="oficina" placeholder="Tu Oficina"
-                                    aria-label="Username" aria-describedby="basic-addon1">
-                            </div>
-
-                        </div>
-
-                        <!--    MOTIVO      -->
-
-                        <h4> MOTIVO: </h4>
-                        <!--    CHECKOUT - ENFERMEDAD-->
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="motivo" id="exampleRadios1"
-                                value="Enfermedad" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                                Enfermedad
-                            </label>
-                        </div>
-
-                        <!--    CHECKOUT - COMISION-->
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="motivo" id="exampleRadios1" value="Comisión"
-                                checked>
-
-                            <label class="form-check-label" for="exampleRadios1">
-                                Comision
-                            </label>
-                        </div>
-
-                        <!--    CHECKOUT - PERMISO-->
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="motivo" id="exampleRadios1" value="Permiso"
-                                checked>
-
-                            <label class="form-check-label" for="exampleRadios1">
-                                Permiso
-                            </label>
-                        </div>
-
-                        <!--    CHECKOUT - OTROS-->
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="motivo" id="exampleRadios1" value="Otros"
-                                checked>
-
-                            <label class="form-check-label" for="exampleRadios1">
-                                Otros
-                            </label>
-
-                        </div>
-
-                        <!--    MENSAJE  -->
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <i class="fas fa-pencil-alt input-group-text"></i>
-                            </div>
-                            <textarea name="mensaje" cols="30" rows="10" placeholder="Mensaje"
-                                class="form-control"></textarea>
-                        </div>
-
-
-
-
-
-                        <!--    FIRMAS   -->
-                        <h4> FIRMA: </h4>
-                        <div class="m-3 row">
-                            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-                            <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
-                                    value="email@example.com">
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" id="inputPassword">
-                            </div>
-                        </div>
-
-
-                        <!--    ENVIAR      -->
-                        <button type="submit" class="btn btn-primary btn-block m-5 boton">Enviar</button>
-                    </form>
-
+                <!--    CALENDARIO  -->
+                <div class="mb-5">
+                    <div class="flex gap-3 items-center">
+                        <i class="fas fa-calendar input-group-text"></i>
+                        <label for="fecha" class="block uppercase font-bold">Fecha</label>
+                    </div>
+                    
+                    <input 
+                        type="datetime-local" 
+                        name="fecha" 
+                        class="form-control" 
+                        placeholder="Tu Fecha"
+                        aria-describedby="basic-addon1"
+                    />
                 </div>
 
-            </div>
-        </section>
+                <!--    OFICINA  -->
+                <div class="mb-5">
+                    <div class="flex gap-3 items-center">
+                        <i class="fas fa-solid fa-building input-group-text"></i>
+                        <label for="oficina" class="block uppercase font-bold">Oficina</label>  
+                    </div>
+
+                    <input 
+                        type="text" 
+                        class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror" 
+                        name="oficina" 
+                        placeholder="Tu Oficina" 
+                        aria-describedby="basic-addon1"
+                    />
+                    @error('oficina')
+                    <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!--    MOTIVO      -->
+
+                <h4 class="text-center"> MOTIVO: </h4>
+
+                <div class="mb-5">
+                    <!--    CHECKOUT - ENFERMEDAD-->
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="motivo" id="exampleRadios1"
+                            value="Enfermedad" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                            Enfermedad
+                        </label>
+                    </div>
+
+                    <!--    CHECKOUT - COMISION-->
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="motivo" id="exampleRadios1" value="Comisión"
+                            checked>
+
+                        <label class="form-check-label" for="exampleRadios1">
+                            Comision
+                        </label>
+                    </div>
+
+                    <!--    CHECKOUT - PERMISO-->
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="motivo" id="exampleRadios1" value="Permiso"
+                            checked>
+
+                        <label class="form-check-label" for="exampleRadios1">
+                            Permiso
+                        </label>
+                    </div>
+
+                    <!--    CHECKOUT - OTROS-->
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="motivo" id="exampleRadios1" value="Otros"
+                            checked>
+
+                        <label class="form-check-label" for="exampleRadios1">
+                            Otros
+                        </label>
+                    </div>
+                </div>
+                
+
+                <!--    MENSAJE  -->
+
+                <div class="mb-5">
+                    <div class="flex gap-3 items-center">
+                        <i class="fas fa-pencil-alt input-group-text"></i>
+                        <label for="mensaje" class="block uppercase font-bold">Mensaje</label>  
+                    </div>
+                    <textarea name="mensaje" cols="20" rows="5" placeholder="Tu Mensaje"
+                        class="form-control"></textarea>
+                </div>
+                    
+                <!--    BOTON ENVIAR      -->
+                <div class="text-center p-4">
+                    <button 
+                        type="submit"
+                        class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer 
+                        uppercase w-full font-bold p-4 text-white rounded-lg"
+                        >
+                        Enviar Boleta
+
+                    </button>
+                </div>
+                    
+                
+            
+            </form>
+        </div>
     </div>
 @endsection

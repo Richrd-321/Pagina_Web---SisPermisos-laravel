@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BoletaController;
+use App\Http\Controllers\ListBoletasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PostController;
@@ -35,3 +36,5 @@ Route::get('/{user:username}', [PostController::class, 'index'])->name('posts.in
 
 Route::get('/principal/boleta', [BoletaController::class, 'index'])->name('boletas');
 Route::post('/principal/boleta', [BoletaController::class, 'store']);
+
+Route::get('/principal/lista_boleta', [ListBoletasController::class, 'index'])->name('list_boletas');

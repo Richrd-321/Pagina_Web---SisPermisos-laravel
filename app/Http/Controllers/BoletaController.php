@@ -30,16 +30,39 @@ class BoletaController extends Controller
         ]);
 
         // Creamos el Objeto
+        /*
         $boletas = new Boleta;
         $boletas->nombre = $request->nombre;
         $boletas->fecha = $request->fecha;
         $boletas->oficina = $request->oficina;
         $boletas->motivo = $request->motivo;
         $boletas->mensaje = $request->mensaje;
+        $boletas->user_id = auth()->user()->id;
         $boletas->save();
+        */
+        /*
+        // Validacion de Usuario
+        Boleta::create([
+            'nombre'=> $request->nombre,
+            'fecha'=> $request->fecha,
+            'oficina'=> $request->oficina,
+            'motivo'=> $request->motivo,
+            'mensaje'=> $request->mensaje,
+            'user_id'=> auth()->user()->id,
+        ]);
+        */
 
+        $request->user()->boletas()->create([
+            'nombre'=> $request->nombre,
+            'fecha'=> $request->fecha,
+            'oficina'=> $request->oficina,
+            'motivo'=> $request->motivo,
+            'mensaje'=> $request->mensaje,
+            'user_id'=> auth()->user()->id
+        ]);
         // Redirigiendo al usuario
-        return redirect()->route('boletas')->with('success', 'Boleta guardada correctamente');
+        //return redirect()->route('boletas')->with('success', 'Boleta guardada correctamente');
+        return redirect()->route('posts.index', auth()->user()->username)->with('success', 'Boleta guardada correctamente');
     }
 
     public function show($id){

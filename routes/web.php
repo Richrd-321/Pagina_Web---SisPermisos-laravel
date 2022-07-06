@@ -34,6 +34,7 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 Route::get('/{user:username}', [PostController::class, 'index'])->name('posts.index');
 //Route::get('/principal', [PostController::class, 'index'])->name('posts.index');
 
+
 Route::get('/principal/boleta', [BoletaController::class, 'index'])->name('boletas');
 Route::post('/principal/boleta', [BoletaController::class, 'store']);
 

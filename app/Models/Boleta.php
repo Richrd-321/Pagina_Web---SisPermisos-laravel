@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Boleta extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'nombre',
+        'fecha',
+        'oficina',
+        'motivo',
+        'mensaje',
+        'user_id'
+    ];
+
+    public function user(){
+        return $this->belongsTo(User::class)->select(['name', 'username']);
+    }
 }
+
+

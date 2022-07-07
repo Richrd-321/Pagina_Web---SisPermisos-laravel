@@ -16,11 +16,11 @@ class PostController extends Controller
     //public function index(User $user)
     public function index(User $user)
     {
-        $boletas = Boleta::where('user_id', $user->id)->get();
+        //$boletas = Boleta::where('user_id', $user->id)->get();
 
         return view('layouts.dashboard', [
-            'user' => $user,
-            'boletas' => $boletas
+            'user' => $user
+            //'boletas' => $boletas
         ]);
     }
 }

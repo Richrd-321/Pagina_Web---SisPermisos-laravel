@@ -22,19 +22,37 @@ class RegisterController extends Controller
 
         // Validacion
         $this->validate($request, [
-            'name' => 'required|max:60',
-            'username' => 'required|unique:users|min:3|max:20',
+            'nombres' => 'required|max:60',
+            'apellidos' => 'required|max:60',
+            'oficina' => 'required|max:60',
+            'cargo' => 'required|max:60',
+            'dni' => 'required|unique:users|max:8',
             'email' => 'required|unique:users|email|max:30',
             'password' => 'required|confirmed|min:4'
         ]);
 
+        
         User::create([
-            'name' => $request->name,
-            'username' => Str::slug($request->username),
+            'nombres' => $request->nombres,
+            'apellidos' => $request->apellidos,
+            'oficina' => $request->oficina,
+            'cargo' => $request->cargo,
+            'dni' => $request->dni,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
-
+        
+        /*
+        $request->user()->create([
+            'nombres' => $request->nombres,
+            'apellidos' => $request->apellidos,
+            'oficina' => $request->oficina,
+            'cargo' => $request->cargo,
+            'dni' => $request->dni,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+        */
         // Autenticar un usuario
         /*
         auth()->attempt([  
@@ -46,7 +64,7 @@ class RegisterController extends Controller
         auth()->attempt($request->only('email', 'password'));
 
         // Redireccionar
-        return redirect()->route('posts.index');
+        return redirect()->route('register.index');
 
     }
 

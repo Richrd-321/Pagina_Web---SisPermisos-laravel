@@ -78,7 +78,7 @@
                 @guest
                     <nav class="flex gap-3 items-center">
                         <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('login')}}">Login</a>
-                        <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('register')}}">Crear Cuenta</a>
+                        <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('register.index')}}">Crear Cuenta</a>
                     </nav>
                 @endguest   
 

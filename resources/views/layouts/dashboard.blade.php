@@ -25,7 +25,7 @@
                 </p>
 
                 <p class="text-gray-800 text-sm mb-3 font-bold">
-                    0
+                    {{$user->boletas->count()}}
                     <span class="font-normal">Nro de Boletas</span>
                 </p>
 
@@ -34,7 +34,8 @@
     </div>
 
     <section class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
-        @if ($boletas->count())
+
+        @if ($user->boletas->count())
             <h2 class="text-4xl text-center font-black my-10 fw-bold py-3">Lista de Boletas</h2>
                 
             <div class="card">
@@ -52,7 +53,7 @@
                         </thead>
         
                         <tbody>
-                            @foreach ($boletas as $boleta)
+                            @foreach ($user->boletas as $boleta)
                                 <tr>
                                     <td>{{$boleta->id}}</td>
                                     <td>{{$boleta->nombre}}</td>

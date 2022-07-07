@@ -119,7 +119,7 @@
 
                     <!--    No tienes cuenta?    -->
                     <div class="my-3">
-                        <span>¿No tienes cuenta? <a href="{{route('register')}}" class="font-medium text-indigo-600 hover:text-indigo-500">Registrate</a> </span>
+                        <span>¿No tienes cuenta? <a href="{{route('register.index')}}" class="font-medium text-indigo-600 hover:text-indigo-500">Registrate</a> </span>
 
                         <br>
 

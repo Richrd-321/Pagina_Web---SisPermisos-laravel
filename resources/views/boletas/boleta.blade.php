@@ -11,15 +11,16 @@
         <!--    BOLETA DE AUTORIZACION DE SALIDA -->
 
         <!--    REGISTRO  -->
+
         <div class="form-group mb-6">
             <h4 class="text-center">DATOS:</h4>
             <form action="{{ route('boletas')}}" method="POST">
                 @csrf
                 <div class="mb-5">
-                    <!--    NOMBRE  -->
+                    <!--    NOMBRES  -->
                     <div class="flex gap-3 items-center">
                         <i class="fas fa-user input-group-text"></i>
-                        <label for="name" class="block uppercase font-bold">Nombre</label>  
+                        <label for="nombre" class="block uppercase font-bold">Nombres</label>  
                     </div>
                         
                     <input 
@@ -28,12 +29,14 @@
                         placeholder="Tu Nombre"
                         name="nombre"
                         class="border p-3 w-full rounded-lg @error('nombre') border-red-500 @enderror"
-                        value="{{ old('nombre') }}"
+                        value=""
                     />
                     @error('name')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
                     @enderror
                 </div>
+
+                
                     
                 <!--    CALENDARIO  -->
                 <div class="mb-5">

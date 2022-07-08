@@ -82,7 +82,7 @@
                     <div class="mb-5">
                         <!--    Cargo    -->
                         <label for="cargo" class="mb-2 block uppercase font-bold">Tipo de Cargo</label>
-                        <select class="form-select border p-3 w-full rounded-lg">
+                        <select name="cargo" class="form-select border p-3 w-full rounded-lg">
                             <option name="cargo" value="Empleado">Empleado</option>
                             <option name="cargo" value="Jefe">Jefe</option>
                             <option name="cargo" value="Administrador">Administrador</option>

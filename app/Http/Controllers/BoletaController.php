@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Boleta;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BoletaController extends Controller
@@ -14,11 +15,14 @@ class BoletaController extends Controller
      * destroy => para eliminar un todo
      * edit => para mostrar el formulario de edicion
      */
-
+    
+    
      // Vista
     public function index(){
         $boletas = Boleta::all();
-        return view('boletas.boleta', ['boletas' => $boletas]);
+        return view('boletas.boleta', [
+            'boletas' => $boletas
+        ]);
     }
 
     // Validacion
@@ -62,7 +66,7 @@ class BoletaController extends Controller
         ]);
         // Redirigiendo al usuario
         //return redirect()->route('boletas')->with('success', 'Boleta guardada correctamente');
-        return redirect()->route('posts.index', auth()->user()->username)->with('success', 'Boleta guardada correctamente');
+        return redirect()->route('posts.index', auth()->user()->nombres)->with('success', 'Boleta guardada correctamente');
     }
 
     public function show($id){

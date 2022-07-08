@@ -31,10 +31,12 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
-Route::get('/{user:dni}', [PostController::class, 'index'])->name('posts.index');
+Route::get('/{user:nombres}', [PostController::class, 'index'])->name('posts.index');
 //Route::get('/principal', [PostController::class, 'index'])->name('posts.index');
-
-
+/*
+Route::get('/{user:nombres}/boleta', [BoletaController::class, 'index'])->name('boletas');
+Route::post('/{user:nombres}/boleta', [BoletaController::class, 'store']);
+*/
 Route::get('/principal/boleta', [BoletaController::class, 'index'])->name('boletas');
 Route::post('/principal/boleta', [BoletaController::class, 'store']);
 

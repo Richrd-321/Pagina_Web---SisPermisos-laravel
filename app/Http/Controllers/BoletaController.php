@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Boleta;
 use App\Models\User;
+use App\Models\Boleta;
 use Illuminate\Http\Request;
 
 class BoletaController extends Controller
@@ -18,11 +18,17 @@ class BoletaController extends Controller
     
     
      // Vista
-    public function index(){
-        $boletas = Boleta::all();
+    public function index(User $user){
+        //$boletas = Boleta::all();
+        $boletas = Boleta::where('user_id', $user->id)->get();
         return view('boletas.boleta', [
+            'user' => $user,
             'boletas' => $boletas
         ]);
+    }
+
+    public function create(){
+        return view('boletas.boleta');
     }
 
     // Validacion
@@ -70,8 +76,13 @@ class BoletaController extends Controller
     }
 
     public function show($id){
-        $boletas = Boleta::find($id);
-        return view('boletas.show', ['boletas' => $boletas]);
+        $boletas = Boleta::findOrFail($id);
+        return redirect()->route('boletas.show', ['boletas' => $boletas]);
+    }
+
+    public function edit($id){
+        $boleta = Boleta::findOrFail($id);
+        return redirect()->route('posts.index', auth()->user()->nombres);
     }
 
     public function update(){

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('titulo')
-    Boleta de Autorizacion de Salida
+    Boleta de Autorizacion de Salida 
 @endsection
 
 @section('contenido')
@@ -14,7 +14,7 @@
 
         <div class="form-group mb-6">
             <h4 class="text-center">DATOS:</h4>
-            <form action="{{ route('boletas')}}" method="POST">
+            <form action="{{ route('boletas.store')}}" method="POST">
                 @csrf
                 <div class="mb-5">
                     <!--    NOMBRES  -->
@@ -29,9 +29,9 @@
                         placeholder="Tu Nombre"
                         name="nombre"
                         class="border p-3 w-full rounded-lg @error('nombre') border-red-500 @enderror"
-                        value=""
+                        value="{{ $user->nombres }} {{ $user->apellidos }}"
                     />
-                    @error('name')
+                    @error('nombre')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
                     @enderror
                 </div>
@@ -66,7 +66,7 @@
                         class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror" 
                         name="oficina" 
                         placeholder="Tu Oficina" 
-                        aria-describedby="basic-addon1"
+                        value="{{ $user->oficina }}"
                     />
                     @error('oficina')
                     <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>

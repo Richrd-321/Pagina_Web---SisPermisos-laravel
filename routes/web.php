@@ -33,11 +33,17 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
 Route::get('/{user:nombres}', [PostController::class, 'index'])->name('posts.index');
 //Route::get('/principal', [PostController::class, 'index'])->name('posts.index');
-/*
-Route::get('/{user:nombres}/boleta', [BoletaController::class, 'index'])->name('boletas');
-Route::post('/{user:nombres}/boleta', [BoletaController::class, 'store']);
-*/
-Route::get('/principal/boleta', [BoletaController::class, 'index'])->name('boletas');
-Route::post('/principal/boleta', [BoletaController::class, 'store']);
+
+//Route::get('/{user:nombres}/boleta', [BoletaController::class, 'index'])->name('boletas');
+//Route::post('/{user:nombres}/boleta', [BoletaController::class, 'store']);
+
+Route::get('/{user:nombres}/boletas', [BoletaController::class, 'index'])->name('boletas.index');
+Route::get('/boletas/create', [BoletaController::class, 'create'])->name('boletas.create');
+Route::post('/boletas', [BoletaController::class, 'store'])->name('boletas.store');
+Route::get('/boletas/{boleta}', [BoletaController::class, 'show'])->name('boletas.show');
+//Route::get('/principal/{boleta:id}/edit', [BoletaController::class, 'edit']);
+
+
+
 
 Route::get('/principal/lista_boleta', [ListBoletasController::class, 'index'])->name('list_boletas');

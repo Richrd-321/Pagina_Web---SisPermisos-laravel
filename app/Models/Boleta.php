@@ -19,7 +19,7 @@ class Boleta extends Model
     ];
 
     public function user(){
-        return $this->belongsTo(User::class)->select(['name', 'dni']);
+        return $this->belongsTo(User::class)->select(['nombres','apellidos','oficina','cargo','dni','email']);
     }
 }
 

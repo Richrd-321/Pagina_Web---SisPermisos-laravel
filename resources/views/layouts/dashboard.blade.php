@@ -123,17 +123,14 @@
                                     <td>{{$boleta->oficina}}</td>
                                     <td>{{$boleta->motivo}}</td>
                                     <td>{{$boleta->mensaje}}</td>
-                                    <td class="td-actions text-center">
+                                    <td class="td-actions text-center;">
                                         <div class="container">
-                                            <div class="col">
-                                                <div class="row">
-                                                    <a class="btn btn-info" href="{{ route('boletas.show', $boleta) }}">Editar</a>
-                                                </div>
-
-                                                <div class="row">
-                                                    <button class="btn btn-danger">Borrar</button>
-                                                </div>
-                                            </div>
+                                            <a class="btn btn-info" href="{{ route('boletas.edit', $boleta) }}">Editar</a>
+                                                <form action="{{ route('boletas.delete', $boleta->id) }}" class="d-inline formulario-eliminar" method="POST" style="display: inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger" type="submit" rel="tooltip">Borrar</button>
+                                                </form>
                                         </div>
                                         
                                         
@@ -197,7 +194,12 @@
                                                 </div>
 
                                                 <div class="row">
-                                                    <button class="btn btn-danger">Borrar</button>
+                                                    <form action="{{ route('boletas.delete', $boleta->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-danger" type="submit" rel="tooltip">Borrar</button>
+                                                    </form>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -264,6 +266,43 @@
                 }
             }
         });
+    </script>
+
+    <!--    SWEET ALERT 2   -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if (session('eliminar') == 'ok')
+        <script>
+            Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+            )
+        </script>
+    @endif
+
+    <script>
+        $('.formulario-eliminar').submit(function(e)){
+            e.preventDefailt();
+            Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                /*
+                
+                
+                */
+               this.submit();
+            }
+            })
+        }
+        
     </script>
     
 @endsection

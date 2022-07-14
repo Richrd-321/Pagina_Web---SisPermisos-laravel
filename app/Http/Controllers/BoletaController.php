@@ -80,18 +80,24 @@ class BoletaController extends Controller
         return redirect()->route('boletas.show', ['boletas' => $boletas]);
     }
 
-    public function edit($id){
+    public function edit(Boleta $boleta){
+        
+        //return redirect()->route('posts.index', auth()->user()->nombres);
+        return view('boletas.edit', compact('boleta'));
+    }
+
+    public function update(Request $request, $id){
         $boleta = Boleta::findOrFail($id);
-        return redirect()->route('posts.index', auth()->user()->nombres);
+        $data = $request->all();
+
+        $boleta->update($data);
+
+        return redirect()->route('posts.index', auth()->user()->nombres)->with('success', 'Boleta actualizada correctamente');
     }
 
-    public function update(){
-        $boletas = Boleta::all();
-        return view('boletas.index', ['boletas' => $boletas]);
-    }
+    public function destroy(Boleta $boleta){
+        $boleta->delete();
 
-    public function destroy(){
-        $boletas = Boleta::all();
-        return view('boletas.index', ['boletas' => $boletas]);
+        return back()->with('success', 'Boleta Eliminada Exitosamente...');
     }
 }

@@ -64,8 +64,10 @@ class BoletaController extends Controller
 
         $request->user()->boletas()->create([
             'nombre'=> $request->nombre,
-            'fecha'=> $request->fecha,
             'oficina'=> $request->oficina,
+            'fecha'=> $request->fecha,
+            'hora_inicio' => $request->hora_inicio,
+            'hora_final' => $request->hora_final,
             'motivo'=> $request->motivo,
             'mensaje'=> $request->mensaje,
             'user_id'=> auth()->user()->id
@@ -98,6 +100,6 @@ class BoletaController extends Controller
     public function destroy(Boleta $boleta){
         $boleta->delete();
 
-        return back()->with('success', 'Boleta Eliminada Exitosamente...');
+        return back()->with('eliminar', 'Boleta Eliminada Exitosamente...');
     }
 }

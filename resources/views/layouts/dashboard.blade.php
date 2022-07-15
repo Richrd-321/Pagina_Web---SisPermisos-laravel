@@ -92,7 +92,7 @@
     </div>
 
     <!-- ================================================================= SECCION - LISTA DE BOLETAS ========================================== -->
-    <section class="block p-6 rounded-lg shadow-lg bg-white max-w-sm mb-20">
+    <section class="block p-6 rounded-lg shadow-lg bg-white max-w mb-20">
 
 
 
@@ -106,8 +106,10 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre</th>
-                                <th>Fecha</th>
                                 <th>Oficina</th>
+                                <th>Fecha</th>
+                                <th>H_Inicio</th>
+                                <th>H_Final</th>
                                 <th>Motivo</th>
                                 <th>Mensaje</th>
                                 <th>Acciones</th>
@@ -119,14 +121,16 @@
                                 <tr>
                                     <td>{{$boleta->id}}</td>
                                     <td>{{$boleta->nombre}}</td>
-                                    <td>{{$boleta->fecha}}</td>
                                     <td>{{$boleta->oficina}}</td>
+                                    <td>{{$boleta->fecha}}</td>
+                                    <td>{{$boleta->hora_inicio}}</td>
+                                    <td>{{$boleta->hora_final}}</td>
                                     <td>{{$boleta->motivo}}</td>
                                     <td>{{$boleta->mensaje}}</td>
                                     <td class="td-actions text-center;">
                                         <div class="container">
                                             <a class="btn btn-info" href="{{ route('boletas.edit', $boleta) }}">Editar</a>
-                                                <form action="{{ route('boletas.delete', $boleta->id) }}" class="d-inline formulario-eliminar" method="POST" style="display: inline-block;">
+                                                <form action="{{ route('boletas.delete', $boleta->id) }}" class="d-inline formulario-eliminar" method="POST" >
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-danger" type="submit" rel="tooltip">Borrar</button>
@@ -155,7 +159,7 @@
 
 
  <!-- ================================================================= SECCION - LISTA DE PERMISOS ========================================== -->
-    <section class="block p-6 rounded-lg shadow-lg bg-white max-w-sm mt-10">
+    <section class="block p-6 rounded-lg shadow-lg bg-white max-w mt-10">
 
 
 
@@ -269,9 +273,10 @@
     </script>
 
     <!--    SWEET ALERT 2   -->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
-    @if (session('eliminar') == 'ok')
+    <!--
+    @if (session('eliminar'))
         <script>
             Swal.fire(
                 'Deleted!',
@@ -281,27 +286,32 @@
         </script>
     @endif
 
+    -->
     <script>
-        $('.formulario-eliminar').submit(function(e)){
-            e.preventDefailt();
+        $('.formulario-eliminar').submit(function(e){
+            e.preventDefault();
             Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-            if (result.isConfirmed) {
-                /*
-                
-                
-                */
-               this.submit();
-            }
+                title: '¿Estás seguro?',
+                text: "¡Esta boleta se eliminara definitivamente!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '¡Si, eliminar!',
+                cancelButtonText: 'Cancelar',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    /*
+                    */
+                    Swal.fire(
+                    '¡Eliminado!',
+                    'La boleta se eliminó con éxito',
+                    'success'
+            )
+                    this.submit();
+                }
             })
-        }
+        });
         
     </script>
     

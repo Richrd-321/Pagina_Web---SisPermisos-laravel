@@ -11,8 +11,10 @@ class Boleta extends Model
 
     protected $fillable = [
         'nombre',
-        'fecha',
         'oficina',
+        'fecha',
+        'hora_inicio',
+        'hora_final',
         'motivo',
         'mensaje',
         'user_id'

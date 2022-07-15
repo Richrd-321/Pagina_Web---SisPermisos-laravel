@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('boletas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('fecha');
             $table->string('oficina');
+            $table->string('fecha');
+            $table->string('hora_inicio')->nullable();;
+            $table->string('hora_final')->nullable();;
             $table->string('motivo');
             $table->string('mensaje');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');

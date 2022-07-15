@@ -4,6 +4,7 @@ use App\Http\Controllers\BoletaController;
 use App\Http\Controllers\ListBoletasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\PermisosController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
@@ -46,6 +47,7 @@ Route::put('/boletas/{boleta}', [BoletaController::class, 'update'])->name('bole
 Route::delete('/boletas/{boleta}', [BoletaController::class, 'destroy'])->name('boletas.delete');
 //Route::get('/principal/{boleta:id}/edit', [BoletaController::class, 'edit']);
 
+Route::post('/{user:nombres}/boletas/{boleta}', [PermisosController::class, 'store'])->name('permisos.index');
 
 
 

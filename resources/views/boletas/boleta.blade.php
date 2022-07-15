@@ -16,128 +16,191 @@
 @section('contenido')
 
 
-    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+    <div class="block p-6 rounded-lg shadow-lg bg-white max-w">
         <!--    BOLETA DE AUTORIZACION DE SALIDA -->
-
-        <!--    REGISTRO  -->
 
         <div class="form-group mb-6">
             <h4 class="text-center">DATOS:</h4>
-            <form action="{{ route('boletas.store')}}" method="POST">
+            <form action="{{ route('boletas.store')}}" method="POST" class="formulario-crear">
                 @csrf
-                <div class="mb-5">
-                    <!--    NOMBRES  -->
-                    <div class="flex gap-3 items-center">
-                        <i class="fas fa-user input-group-text"></i>
-                        <label for="nombre" class="block uppercase font-bold">Nombres</label>  
-                    </div>
-                        
-                    <input 
-                        id="nombre"
-                        type="text"
-                        placeholder="Tu Nombre"
-                        name="nombre"
-                        class="border p-3 w-full rounded-lg @error('nombre') border-red-500 @enderror"
-                        value="{{ $user->nombres }} {{ $user->apellidos }}"
-                    />
-                    @error('nombre')
-                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
-                    @enderror
-                </div>
+                <!--    REGISTRO  -->
 
-                
-                    
-                <!--    CALENDARIO  -->
-                <div class="mb-5">
-                    <div class="flex gap-3 items-center">
-                        <i class="fas fa-calendar input-group-text"></i>
-                        <label for="fecha" class="block uppercase font-bold">Fecha</label>
-                    </div>
-                    
-                    <input 
-                        type="datetime-local" 
-                        name="fecha" 
-                        class="form-control" 
-                        placeholder="Tu Fecha"
-                        aria-describedby="basic-addon1"
-                    />
-                </div>
-
-                <!--    OFICINA  -->
-                <div class="mb-5">
-                    <div class="flex gap-3 items-center">
-                        <i class="fas fa-solid fa-building input-group-text"></i>
-                        <label for="oficina" class="block uppercase font-bold">Oficina</label>  
+                <div class="row">
+                    <!--    NOMBRES Y APELLIDOS-->
+                    <div class="col-7">
+                        <div class="mb-5">
+                            <!--    NOMBRES  -->
+                            <div class="flex gap-3 items-center">
+                                <i class="fas fa-user input-group-text"></i>
+                                <label for="nombre" class="block uppercase font-bold">Nombres</label>  
+                            </div>
+                                
+                            <input 
+                                id="nombre"
+                                type="text"
+                                placeholder="Tu Nombre"
+                                name="nombre"
+                                class="border p-3 w-full rounded-lg @error('nombre') border-red-500 @enderror"
+                                value="{{ $user->nombres }} {{ $user->apellidos }}"
+                            />
+                            @error('nombre')
+                                <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                            @enderror
+                        </div>
                     </div>
 
-                    <input 
-                        type="text" 
-                        class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror" 
-                        name="oficina" 
-                        placeholder="Tu Oficina" 
-                        value="{{ $user->oficina }}"
-                    />
-                    @error('oficina')
-                    <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
-                    @enderror
+                    <!--    OFICINA  -->
+                    <div class="col-5">              
+                        <div class="mb-5">
+                            <div class="flex gap-3 items-center">
+                                <i class="fas fa-solid fa-building input-group-text"></i>
+                                <label for="oficina" class="block uppercase font-bold">Oficina</label>  
+                            </div>
+
+                            <input 
+                                type="text" 
+                                class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror" 
+                                name="oficina" 
+                                placeholder="Tu Oficina" 
+                                value="{{ $user->oficina }}"
+                            />
+                            @error('oficina')
+                            <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                            @enderror
+                        </div>
                 </div>
 
+                <div class="container">
+                    <div class="row flex justify-between">
+
+                        <!--    CALENDARIO  -->
+                        <div class="col-4">          
+                            <!--    CALENDARIO  -->
+                            <div class="mb-5">
+                                <div class="flex gap-3 items-center">
+                                    <i class="fas fa-calendar input-group-text"></i>
+                                    <label for="fecha" class="block uppercase font-bold">Fecha</label>
+                                </div>
+                                
+                                <input 
+                                    type="date" 
+                                    name="fecha" 
+                                    class="form-control" 
+                                    placeholder="Tu Fecha"
+                                    aria-describedby="basic-addon1"
+                                />
+                            </div>
+                        </div>  
+                        <!--    HORA INICIO  -->
+                        <div class="col-3">
+                            <div class="mb-5">
+                                <div class="flex gap-3 items-center">
+                                    <i class="fas fa-clock input-group-text"></i>
+                                    <label for="hora_inicio" class="block uppercase font-bold">Hora inicial</label>
+                                </div>
+                                
+                                <input 
+                                    type="time" 
+                                    name="hora_inicio" 
+                                    class="form-control" 
+                                    min="08:00"
+                                    max="16:50"
+                                    required
+                                />
+                            </div>
+                        </div>
+            
+                        <!--    HORA FINAL  -->
+                        <div class="col-3">
+                            <div class="mb-5">
+                                <div class="flex gap-3 items-center">
+                                    <i class="fas fa-clock input-group-text"></i>
+                                    <label for="hora_final" class="block uppercase font-bold">Hora Final</label>
+                                </div>
+                                
+                                <input 
+                                    type="time" 
+                                    name="hora_final" 
+                                    class="form-control" 
+                                    min="08:00"
+                                    max="16:50"
+                                    required
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                  
                 <!--    MOTIVO      -->
 
                 <h4 class="text-center"> MOTIVO: </h4>
 
-                <div class="mb-5">
-                    <!--    CHECKOUT - ENFERMEDAD-->
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="motivo" id="exampleRadios1"
-                            value="Enfermedad" checked>
-                        <label class="form-check-label" for="exampleRadios1">
-                            Enfermedad
-                        </label>
+                <div class="container">
+                    <div class="row flex justify-around">
+                        <div class="col-5">
+                            <div class="flex gap-3 items-center">
+                                <label for="mensaje" class="block uppercase font-bold">Opciones:</label>  
+                            </div>
+                            <div class="mb-5">
+                                <!--    CHECKOUT - ENFERMEDAD-->
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="motivo" id="exampleRadios1"
+                                        value="Enfermedad" checked>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        Enfermedad
+                                    </label>
+                                </div>
+            
+                                <!--    CHECKOUT - COMISION-->
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="motivo" id="exampleRadios1" value="Comisión"
+                                        checked>
+            
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        Comision
+                                    </label>
+                                </div>
+            
+                                <!--    CHECKOUT - PERMISO-->
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="motivo" id="exampleRadios1" value="Permiso"
+                                        checked>
+            
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        Permiso
+                                    </label>
+                                </div>
+            
+                                <!--    CHECKOUT - OTROS-->
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="motivo" id="exampleRadios1" value="Otros"
+                                        checked>
+            
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        Otros
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <!--    MENSAJE  -->
+                        <div class="col-7">
+                            <div class="mb-5">
+                                <div class="flex gap-3 items-center">
+                                    <i class="fas fa-pencil-alt input-group-text"></i>
+                                    <label for="mensaje" class="block uppercase font-bold">Mensaje</label>  
+                                </div>
+                                <textarea name="mensaje" cols="20" rows="5" placeholder="Tu Mensaje"
+                                    class="form-control"></textarea>
+                            </div>
+                        </div>
                     </div>
+                </div>    
 
-                    <!--    CHECKOUT - COMISION-->
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="motivo" id="exampleRadios1" value="Comisión"
-                            checked>
-
-                        <label class="form-check-label" for="exampleRadios1">
-                            Comision
-                        </label>
-                    </div>
-
-                    <!--    CHECKOUT - PERMISO-->
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="motivo" id="exampleRadios1" value="Permiso"
-                            checked>
-
-                        <label class="form-check-label" for="exampleRadios1">
-                            Permiso
-                        </label>
-                    </div>
-
-                    <!--    CHECKOUT - OTROS-->
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="motivo" id="exampleRadios1" value="Otros"
-                            checked>
-
-                        <label class="form-check-label" for="exampleRadios1">
-                            Otros
-                        </label>
-                    </div>
-                </div>
+                
                 
 
-                <!--    MENSAJE  -->
-
-                <div class="mb-5">
-                    <div class="flex gap-3 items-center">
-                        <i class="fas fa-pencil-alt input-group-text"></i>
-                        <label for="mensaje" class="block uppercase font-bold">Mensaje</label>  
-                    </div>
-                    <textarea name="mensaje" cols="20" rows="5" placeholder="Tu Mensaje"
-                        class="form-control"></textarea>
-                </div>
+                
                     
                 <!--    BOTON ENVIAR      -->
                 <div class="text-center p-4">
@@ -156,4 +219,26 @@
             </form>
         </div>
     </div>
+@endsection
+
+@section('JS')
+    <!--    SWEET ALERT 2   -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        $('.formulario-crear').submit(function(e){
+            e.preventDefault();
+            Swal.fire({
+                icon: 'success',
+                title: '¡Guardado!',
+                text: '¡La boleta se guardó con éxito!',
+            }).then((result) => {
+                if (result.isConfirmed){
+                    this.submit();
+                }
+            }) 
+
+            
+        });
+        
+    </script>
 @endsection

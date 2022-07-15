@@ -17,13 +17,13 @@
 @endsection
 
 @section('contenido')
-<div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+<div class="block p-6 rounded-lg shadow-lg bg-white max-w">
     <!--    BOLETA DE AUTORIZACION DE SALIDA -->
 
     <!--    REGISTRO  -->
 
     <h4 class="text-center mb-4">DATOS:</h4>
-    <form action="{{ route('boletas.update', $boleta->id) }}" method="POST">
+    <form action="{{ route('boletas.update', $boleta->id) }}" method="POST" class="formulario-editar">
         @csrf
         @method('PUT')
         
@@ -224,4 +224,26 @@
     
     </form>
 </div>
+@endsection
+
+@section('JS')
+    <!--    SWEET ALERT 2   -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        $('.formulario-editar').submit(function(e){
+            e.preventDefault();
+            Swal.fire({
+                icon: 'success',
+                title: 'Acualizado!',
+                text: '¡La boleta se actualizó con éxito!',
+            }).then((result) => {
+                if (result.isConfirmed){
+                    this.submit();
+                }
+            }) 
+
+            
+        });
+        
+    </script>
 @endsection

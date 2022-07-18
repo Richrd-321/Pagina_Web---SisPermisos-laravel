@@ -47,7 +47,8 @@ Route::put('/boletas/{boleta}', [BoletaController::class, 'update'])->name('bole
 Route::delete('/boletas/{boleta}', [BoletaController::class, 'destroy'])->name('boletas.delete');
 //Route::get('/principal/{boleta:id}/edit', [BoletaController::class, 'edit']);
 
-Route::post('/{user:nombres}/boletas/{boleta}', [PermisosController::class, 'store'])->name('permisos.index');
+Route::get('/{user:nombres}/boletas/{boleta}', [PermisosController::class, 'index'])->name('permisos.index');
+Route::post('/{user:nombres}/boletas/{boleta}', [PermisosController::class, 'store'])->name('permisos.store');
 
 
 

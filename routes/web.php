@@ -41,7 +41,7 @@ Route::get('/{user:nombres}', [PostController::class, 'index'])->name('posts.ind
 Route::get('/{user:nombres}/boletas', [BoletaController::class, 'index'])->name('boletas.index');
 Route::get('/boletas/create', [BoletaController::class, 'create'])->name('boletas.create');
 Route::post('/boletas', [BoletaController::class, 'store'])->name('boletas.store');
-Route::get('/boletas/{boleta}', [BoletaController::class, 'show'])->name('boletas.show');
+Route::get('/boletas/{boleta}/ver', [BoletaController::class, 'show'])->name('boletas.show');
 Route::get('/boletas/{boleta}/editar', [BoletaController::class, 'edit'])->name('boletas.edit');
 Route::put('/boletas/{boleta}', [BoletaController::class, 'update'])->name('boletas.update');
 Route::delete('/boletas/{boleta}', [BoletaController::class, 'destroy'])->name('boletas.delete');

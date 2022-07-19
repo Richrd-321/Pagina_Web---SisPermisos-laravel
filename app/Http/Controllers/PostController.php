@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Boleta;
+use App\Models\Permisos;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -16,11 +17,14 @@ class PostController extends Controller
     //public function index(User $user)
     public function index(User $user)
     {
-        //$boletas = Boleta::where('user_id', $user->id)->get();
-
+        $boleta = Boleta::where('user_id', $user->id)->get();
+        $permisos = Permisos::all();
         return view('layouts.dashboard', [
-            'user' => $user
-            //'boletas' => $boletas
+            'user' => $user,
+            'boletas' => $boleta,
+            'permisos' => $permisos
         ]);
     }
+
+    
 }

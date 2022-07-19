@@ -23,6 +23,11 @@ class Boleta extends Model
     public function user(){
         return $this->belongsTo(User::class)->select(['nombres','apellidos','oficina','cargo','dni','email']);
     }
+
+    public function permisos()
+    {
+        return $this->hasMany(Permisos::class);
+    }
 }
 
 

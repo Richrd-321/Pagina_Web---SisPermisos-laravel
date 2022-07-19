@@ -16,7 +16,7 @@
     @else
         @if ($user->cargo=='Jefe')
             <a class="flex items-center gap-2 bg-white border p-2 text-gray-600 rounded text-sm
-            uppercase font-bold cursor-pointer" href="{{ route('permisos.index', ['user' => $user, 'boletas' => $user->boletas]) }}">
+            uppercase font-bold cursor-pointer" href="{{ route('permisos.index', ['user' => $user, 'boleta' => $user->boletas]) }}">
             <svg width="35" height="35" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M256 0v128h128L256 0zM288 256H96v64h192V256zM224 128L224 0H48C21.49 0 0 21.49 0 48v416C0 490.5 21.49 512 48 512h288c26.51 0 48-21.49 48-48V160h-127.1C238.3 160 224 145.7 224 128zM64 72C64 67.63 67.63 64 72 64h80C156.4 64 160 67.63 160 72v16C160 92.38 156.4 96 152 96h-80C67.63 96 64 92.38 64 88V72zM64 136C64 131.6 67.63 128 72 128h80C156.4 128 160 131.6 160 136v16C160 156.4 156.4 160 152 160h-80C67.63 160 64 156.4 64 152V136zM320 440c0 4.375-3.625 8-8 8h-80C227.6 448 224 444.4 224 440v-16c0-4.375 3.625-8 8-8h80c4.375 0 8 3.625 8 8V440zM320 240v96c0 8.875-7.125 16-16 16h-224C71.13 352 64 344.9 64 336v-96C64 231.1 71.13 224 80 224h224C312.9 224 320 231.1 320 240z"/></svg>
 
                 Firmar Boletas
@@ -78,7 +78,8 @@
                 </p>
 
                 <p class="text-gray-800 text-sm mb-3 font-bold mt-5">
-                    0
+                    
+                    {{$permisos->count()}}
                     <span class="font-normal">Nro de Permisos</span>
                 </p>
 
@@ -107,11 +108,7 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Oficina</th>
-                                <th>Fecha</th>
-                                <th>H_Inicio</th>
-                                <th>H_Final</th>
                                 <th>Motivo</th>
-                                <th>Mensaje</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -122,13 +119,10 @@
                                     <td>{{$boleta->id}}</td>
                                     <td>{{$boleta->nombre}}</td>
                                     <td>{{$boleta->oficina}}</td>
-                                    <td>{{$boleta->fecha}}</td>
-                                    <td>{{$boleta->hora_inicio}}</td>
-                                    <td>{{$boleta->hora_final}}</td>
                                     <td>{{$boleta->motivo}}</td>
-                                    <td>{{$boleta->mensaje}}</td>
                                     <td class="td-actions text-center;">
                                         <div class="container">
+                                            <a class="btn btn-warning formulario-ver" href="{{ route('boletas.show', $boleta) }}"><svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/></svg></a>
                                             <a class="btn btn-info" href="{{ route('boletas.edit', $boleta) }}">Editar</a>
                                                 <form action="{{ route('boletas.delete', $boleta->id) }}" class="d-inline formulario-eliminar" method="POST" >
                                                     @csrf
@@ -136,6 +130,7 @@
                                                     <button class="btn btn-danger" type="submit" rel="tooltip">Borrar</button>
                                                 </form>
                                         </div>
+
                                         
                                         
                                         
@@ -166,6 +161,7 @@
         @if ($user->boletas->count())
             <h2 class="text-4xl text-center font-black my-10 fw-bold py-3">Lista de Permisos</h2>
                 
+            
             <div class="card">
                 <div class="card-body">
                     <table class="table table-striped table-bordered" id="permisos">
@@ -173,46 +169,26 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre</th>
-                                <th>Fecha</th>
-                                <th>Oficina</th>
+                                <th>Fecha</th>                             
                                 <th>Motivo</th>
-                                <th>Mensaje</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
         
                         <tbody>
                             @foreach ($user->boletas as $boleta)
-                                <tr>
-                                    <td>{{$boleta->id}}</td>
-                                    <td>{{$boleta->nombre}}</td>
-                                    <td>{{$boleta->fecha}}</td>
-                                    <td>{{$boleta->oficina}}</td>
-                                    <td>{{$boleta->motivo}}</td>
-                                    <td>{{$boleta->mensaje}}</td>
-                                    <td class="td-actions text-center">
-                                        <div class="container">
-                                            <div class="col">
-                                                <div class="row">
-                                                    <a class="btn btn-info" href="{{ route('boletas.show', $boleta) }}">Editar</a>
-                                                </div>
-
-                                                <div class="row">
-                                                    <form action="{{ route('boletas.delete', $boleta->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="btn btn-danger" type="submit" rel="tooltip">Borrar</button>
-                                                    </form>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
+                                @foreach ($boleta->permisos as $permiso)                      
+                                    <tr>
+                                        <td>{{$boleta->id}}</td>
+                                        <td>{{$boleta->nombre}}</td>
+                                        <td>{{$boleta->fecha}}</td>
+                                        <td>{{$boleta->motivo}}</td>
                                         
-                                        
-                                        
-                                    </td>
-                                </tr>                       
+                                        <td>{{$permiso->firma}}</td>                                                
+                                    </tr>                       
+                                @endforeach
                             @endforeach
+                            
                         </tbody>
             
                     </table>
@@ -313,6 +289,33 @@
             })
         });
         
+    </script>
+
+    <script>
+        $('.formulario-ver').submit(function(e){
+            e.preventDefault();
+            Swal.fire({
+                title: 'Ver Boleta',
+                html: '
+                ',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '¡Si, eliminar!',
+                cancelButtonText: 'Cancelar',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    /*
+                    */
+                    Swal.fire(
+                    '¡Eliminado!',
+                    'La boleta se eliminó con éxito',
+                    'success'
+            )
+                    this.submit();
+                }
+            })
+        });
     </script>
     
 @endsection

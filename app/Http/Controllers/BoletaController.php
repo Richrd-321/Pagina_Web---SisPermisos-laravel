@@ -77,9 +77,9 @@ class BoletaController extends Controller
         return redirect()->route('posts.index', auth()->user()->nombres)->with('success', 'Boleta guardada correctamente');
     }
 
-    public function show($id){
-        $boletas = Boleta::findOrFail($id);
-        return redirect()->route('boletas.show', ['boletas' => $boletas]);
+    public function show(Boleta $boleta){
+        //$boletas = Boleta::findOrFail($id);
+        return view('boletas.show', compact('boleta'));
     }
 
     public function edit(Boleta $boleta){

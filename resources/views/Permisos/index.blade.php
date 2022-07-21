@@ -25,7 +25,7 @@
             <!--    Nro Boletas -->
             <div class="col">
                 <p class="text-gray-800 text-sm mb-3 font-bold mt-5">
-                    0
+                    {{$permisos->count()}}
                     <span class="font-normal">Nro de Permisos</span>
                 </p>
 

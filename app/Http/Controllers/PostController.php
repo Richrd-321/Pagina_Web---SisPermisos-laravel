@@ -18,7 +18,7 @@ class PostController extends Controller
     public function index(User $user)
     {
         $boleta = Boleta::where('user_id', $user->id)->get();
-        $permisos = Permisos::all();
+        $permisos = Permisos::where('user_id', $user->id)->get();
         return view('layouts.dashboard', [
             'user' => $user,
             'boletas' => $boleta,

@@ -12,12 +12,13 @@ class PermisosController extends Controller
     public function index(User $user){
         $boletas = Boleta::get();
         //$boletas = Boleta::where('user_id', $user->id)->get();
-
+        $permisos = Permisos::get();
 
 
         return view('Permisos.index', [
             'user' => $user,
-            'boleta' => $boletas
+            'boleta' => $boletas,
+            'permisos' => $permisos
         ]);
     }
 
@@ -29,7 +30,7 @@ class PermisosController extends Controller
         
         // ALMACENANDO registro con firma en DNI
         Permisos::create([
-            'user_id' => $user -> id,
+            'user_id' => $boleta -> user_id,
             'boleta_id' => $boleta -> id,
             'firma' =>  $user -> dni
         ]);

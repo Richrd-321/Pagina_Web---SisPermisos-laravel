@@ -16,6 +16,7 @@
 @section('contenido')
 
 
+    @auth
     <div class="block p-6 rounded-lg shadow-lg bg-white max-w">
         <!--    BOLETA DE AUTORIZACION DE SALIDA -->
 
@@ -130,7 +131,7 @@
                         </div>
                     </div>
                 </div>
-                                  
+                                
                 <!--    MOTIVO      -->
 
                 <h4 class="text-center"> MOTIVO: </h4>
@@ -219,6 +220,11 @@
             </form>
         </div>
     </div>
+            
+        
+        
+    @endauth
+    
 @endsection
 
 @section('JS')

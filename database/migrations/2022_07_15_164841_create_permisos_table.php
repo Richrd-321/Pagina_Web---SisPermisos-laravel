@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('permisos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('boleta_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('boleta_id')->constrained()->onDelete('cascade');
             $table->string('firma');
             $table->timestamps();
         });

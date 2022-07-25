@@ -123,11 +123,127 @@
                                     <td>{{$boleta->motivo}}</td>
                                     <td class="td-actions text-center;">
                                         <div class="container">
-                                            <button type="button" class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#miModal" href="{{ route('boletas.show', $boleta) }}">
+                                            <a class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#miModal" href="{{ route('boletas.show', $boleta) }}">
                                                 <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/></svg>
-                                            </button>
+                                            </a>
                                              
-                                            
+                                            <!--    MODAL   -   COOKIES -->
+                                            <div class="modal fade" id="miModal" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitle">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header" style="background-color: #2271b3 !important;">
+                                                            <!--    TITULO  -->
+                                                            <h4 class="modal-title" id="modalTitle" style="color: #fff; text-align: center;">
+                                                                Detalles de la Boleta 
+                                                            </h4>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+
+
+                                                        <div class="modal-body block bg-white ">
+                                                            <!--    BOLETA DE AUTORIZACION DE SALIDA -->
+                                                        
+                                                            <!--    REGISTRO  -->
+                                                        
+                                                            <h4 class="text-center">DATOS:</h4>
+                                                            <form action="#" method="GET">
+                                                                @csrf
+                                                                
+                                                                <div class="mb-5">
+                                                                    <!--    NOMBRES  -->
+                                                                    <div class="flex gap-3 items-center">
+                                                                        <i class="fas fa-user input-group-text"></i>
+                                                                        <label for="nombre" class="block uppercase font-bold">Nombres y Apellidos</label>  
+                                                                    </div>
+                                                                        
+                                                                    <input 
+                                                                        id="nombre"
+                                                                        type="text"
+                                                                        placeholder="Tu Nombre"
+                                                                        name="nombre"
+                                                                        class="border p-3 w-full rounded-lg @error('nombre') border-red-500 @enderror"
+                                                                        value="{{ $boleta->nombre}}"
+                                                                    />
+                                                                </div>
+                                                        
+                                                                
+                                                                    
+                                                                <!--    CALENDARIO  -->
+                                                                <div class="mb-5">
+                                                                    <div class="flex gap-3 items-center">
+                                                                        <i class="fas fa-calendar input-group-text"></i>
+                                                                        <label for="fecha" class="block uppercase font-bold">Nueva - Fecha</label>
+                                                                    </div>
+                                                                    
+                                                                    <input 
+                                                                        type="text" 
+                                                                        name="fecha" 
+                                                                        class="form-control" 
+                                                                        value="{{ $boleta->fecha}}"
+                                                                    />
+                                                                </div>
+                                                        
+                                                                <!--    OFICINA  -->
+                                                                <div class="mb-5">
+                                                                    <div class="flex gap-3 items-center">
+                                                                        <i class="fas fa-solid fa-building input-group-text"></i>
+                                                                        <label for="oficina" class="block uppercase font-bold">Oficina</label>  
+                                                                    </div>
+                                                        
+                                                                    <input 
+                                                                        type="text" 
+                                                                        class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror" 
+                                                                        name="oficina" 
+                                                                        placeholder="Tu Oficina" 
+                                                                        value="{{ $boleta->oficina}}"
+                                                                    />
+                                                                    
+                                                                </div>
+                                                            
+                                                                <!--    MOTIVO      -->
+                                                        
+                                                                <h4 class="text-center"> MOTIVO: </h4>
+                                                        
+                                                                <div class="mb-5">
+                                                                    <div class="flex gap-3 items-center">
+                                                                        <i class="fas fa-solid fa-building input-group-text"></i>
+                                                                        <label for="oficina" class="block uppercase font-bold">Opcion</label>  
+                                                                    </div>
+                                                        
+                                                                    <input 
+                                                                        type="text" 
+                                                                        class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror" 
+                                                                        name="oficina" 
+                                                                        placeholder="Tu Oficina" 
+                                                                        value="{{ $boleta->motivo}}"
+                                                                    />
+                                                                </div>
+                                                                
+                                                        
+                                                                <!--    MENSAJE  -->
+                                                        
+                                                                <div class="mb-5">
+                                                                    <div class="flex gap-3 items-center">
+                                                                        <i class="fas fa-pencil-alt input-group-text"></i>
+                                                                        <label for="mensaje" class="block uppercase font-bold">Mensaje</label>  
+                                                                    </div>
+                                                                    <textarea name="mensaje" cols="20" rows="5" placeholder="Tu Mensaje"
+                                                                        class="form-control">{{ $boleta->mensaje}}
+                                                                    </textarea>
+                                                                </div>
+                                                                    
+                                                                
+                                                                    
+                                                                
+                                                            
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                        
+                                                    
+                                                </div>
+                                                
+                                            </div>
                                             
 
                                             <a class="btn btn-info" href="{{ route('boletas.edit', $boleta) }}"><svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/></svg></a>
@@ -210,126 +326,6 @@
 
   
 @section('JS')
-    <!--    MODAL   -   COOKIES -->
-    <div class="modal fade" id="miModal" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitle">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #2271b3 !important;">
-                    <!--    TITULO  -->
-                    <h4 class="modal-title" id="modalTitle" style="color: #fff; text-align: center;">
-                        Detalles de la Boleta 
-                    </h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-
-                <div class="modal-body block bg-white max-w-sm">
-                    <!--    BOLETA DE AUTORIZACION DE SALIDA -->
-                
-                    <!--    REGISTRO  -->
-                
-                    <h4 class="text-center">DATOS:</h4>
-                    <form action="{{ route('boletas.show', $boleta)}}" method="GET">
-                        @csrf
-                        
-                        <div class="mb-5">
-                            <!--    NOMBRES  -->
-                            <div class="flex gap-3 items-center">
-                                <i class="fas fa-user input-group-text"></i>
-                                <label for="nombre" class="block uppercase font-bold">Nombres y Apellidos</label>  
-                            </div>
-                                
-                            <input 
-                                id="nombre"
-                                type="text"
-                                placeholder="Tu Nombre"
-                                name="nombre"
-                                class="border p-3 w-full rounded-lg @error('nombre') border-red-500 @enderror"
-                                value="{{ $boleta->nombre}}"
-                            />
-                        </div>
-                
-                        
-                            
-                        <!--    CALENDARIO  -->
-                        <div class="mb-5">
-                            <div class="flex gap-3 items-center">
-                                <i class="fas fa-calendar input-group-text"></i>
-                                <label for="fecha" class="block uppercase font-bold">Nueva - Fecha</label>
-                            </div>
-                            
-                            <input 
-                                type="text" 
-                                name="fecha" 
-                                class="form-control" 
-                                value="{{ $boleta->fecha}}"
-                            />
-                        </div>
-                
-                        <!--    OFICINA  -->
-                        <div class="mb-5">
-                            <div class="flex gap-3 items-center">
-                                <i class="fas fa-solid fa-building input-group-text"></i>
-                                <label for="oficina" class="block uppercase font-bold">Oficina</label>  
-                            </div>
-                
-                            <input 
-                                type="text" 
-                                class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror" 
-                                name="oficina" 
-                                placeholder="Tu Oficina" 
-                                value="{{ $boleta->oficina}}"
-                            />
-                            
-                        </div>
-                    
-                        <!--    MOTIVO      -->
-                
-                        <h4 class="text-center"> MOTIVO: </h4>
-                
-                        <div class="mb-5">
-                            <div class="flex gap-3 items-center">
-                                <i class="fas fa-solid fa-building input-group-text"></i>
-                                <label for="oficina" class="block uppercase font-bold">Opcion</label>  
-                            </div>
-                
-                            <input 
-                                type="text" 
-                                class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror" 
-                                name="oficina" 
-                                placeholder="Tu Oficina" 
-                                value="{{ $boleta->motivo}}"
-                            />
-                        </div>
-                        
-                
-                        <!--    MENSAJE  -->
-                
-                        <div class="mb-5">
-                            <div class="flex gap-3 items-center">
-                                <i class="fas fa-pencil-alt input-group-text"></i>
-                                <label for="mensaje" class="block uppercase font-bold">Mensaje</label>  
-                            </div>
-                            <textarea name="mensaje" cols="20" rows="5" placeholder="Tu Mensaje"
-                                class="form-control">{{ $boleta->mensaje}}
-                            </textarea>
-                        </div>
-                            
-                        
-                            
-                        
-                    
-                    </form>
-                </div>
-            </div>
-                
-            
-        </div>
-        
-    </div>
-
-
-
 
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>

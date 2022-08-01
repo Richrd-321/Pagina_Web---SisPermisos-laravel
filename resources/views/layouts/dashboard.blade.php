@@ -261,7 +261,7 @@
                                                         
                                                             
                                                 @else
-                                                    <input type="button" value="Sin Firmar" style="color:Black; display:flex; justify-content: center; background-color: rgb(38, 86, 189); padding: 0.5rem">
+                                                    <input type="button" value="Sin Firmar" style="color:Black; display:flex; justify-content: center; background-color: #1E90FF; padding: 0.5rem">
                                                 @endif     
                                             </fieldset>                                       
                                         </div>              
@@ -320,7 +320,7 @@
      
                                                                 
                                                     @else
-                                                        <input type="button" value="Sin Firmar" style="color:Black; display:flex; justify-content: center; background-color: rgb(38, 86, 189); padding: 0.5rem">
+                                                        <input type="button" value="Sin Firmar" style="color:Black; display:flex; justify-content: center; background-color: #1E90FF; padding: 0.5rem">
                                                     @endif     
                                                 </fieldset>       
                                                 

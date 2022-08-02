@@ -18,4 +18,9 @@ class Permisos extends Model
     public function boletas(){
         return $this->belongsTo(Boleta::class)->select(['nombres','oficina','fecha','hora_inicio','hora_final','motivo','mensaje','user_id']);
     }
+
+    public function registros()
+    {
+        return $this->hasMany(Registro::class);
+    }
 }

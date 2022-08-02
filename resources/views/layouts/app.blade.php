@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}"> 
         <title>Sistema de Permisos - @yield('titulo')</title>
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <script type="text/javascript" src="{{ asset('/js/hora.js')}}" defer></script>
         <!--<link rel="stylesheet" href="public/css/app.css">-->
 
         

@@ -8,6 +8,7 @@ use App\Http\Controllers\PermisosController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RegistroController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::get('/{user:nombres}', [PostController::class, 'index'])->name('posts.ind
 //Route::get('/{user:nombres}/boleta', [BoletaController::class, 'index'])->name('boletas');
 //Route::post('/{user:nombres}/boleta', [BoletaController::class, 'store']);
 
+// Boletas
 Route::get('/{user:nombres}/boletas', [BoletaController::class, 'index'])->name('boletas.index');
 Route::get('/boletas/create', [BoletaController::class, 'create'])->name('boletas.create');
 Route::post('/boletas', [BoletaController::class, 'store'])->name('boletas.store');
@@ -47,8 +49,13 @@ Route::put('/boletas/{boleta}', [BoletaController::class, 'update'])->name('bole
 Route::delete('/boletas/{boleta}', [BoletaController::class, 'destroy'])->name('boletas.delete');
 //Route::get('/principal/{boleta:id}/edit', [BoletaController::class, 'edit']);
 
+// Permisos
 Route::get('/{user:nombres}/boletas/{boleta}', [PermisosController::class, 'index'])->name('permisos.index');
 Route::post('/{user:nombres}/boletas/{boleta}', [PermisosController::class, 'store'])->name('permisos.store');
+
+// Registros
+Route::get('/{user:nombres}/registros/{boleta}', [RegistroController::class, 'index'])->name('registros.index');
+Route::post('/{user:nombres}/registros/{boleta}', [RegistroController::class, 'store'])->name('registros.store');
 
 
 

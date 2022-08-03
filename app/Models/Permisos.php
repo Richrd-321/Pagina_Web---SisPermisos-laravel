@@ -21,6 +21,6 @@ class Permisos extends Model
 
     public function registros()
     {
-        return $this->hasMany(Registro::class);
+        return $this->hasMany(Permisos::class);   
     }
 }

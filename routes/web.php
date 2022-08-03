@@ -54,8 +54,8 @@ Route::get('/{user:nombres}/boletas/{boleta}', [PermisosController::class, 'inde
 Route::post('/{user:nombres}/boletas/{boleta}', [PermisosController::class, 'store'])->name('permisos.store');
 
 // Registros
-Route::get('/{user:nombres}/registros/{boleta}', [RegistroController::class, 'index'])->name('registros.index');
-Route::post('/{user:nombres}/registros/{boleta}', [RegistroController::class, 'store'])->name('registros.store');
+Route::get('/{user:nombres}/permisos/{boleta}', [RegistroController::class, 'index'])->name('registros.index');
+Route::post('/{user:nombres}/permisos/{boleta}', [RegistroController::class, 'store'])->name('registros.store');
 
 
 

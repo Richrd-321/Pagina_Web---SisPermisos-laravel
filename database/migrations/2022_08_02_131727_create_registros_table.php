@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('registros', function (Blueprint $table) {
             $table->id();
             $table->string('horaRegreso');
-            $table->foreignId('permisos_id')->constrained()->onDelete('cascade');
+            $table->foreignId('permiso_id')->constrained()->onDelete('cascade');
             $table->string('firmaRegistro');
             $table->timestamps();
         });

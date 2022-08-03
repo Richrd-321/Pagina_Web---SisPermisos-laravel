@@ -20,8 +20,8 @@ class BoletaFactory extends Factory
             'nombre' => $this->faker->sentence(20),
             'oficina' => $this->faker->sentence(20),
             'fecha' => $this->faker->sentence(10),
-            'hora_inicio' => $ $this->faker->sentence(10),
-            'hora_final' => $ $this->faker->sentence(10),
+            'hora_inicio' => $this->faker->sentence(10),
+            'hora_final' => $this->faker->sentence(10),
             'motivo' => $this->faker->sentence(20),
             'mensaje' =>$this->faker->sentence(20),
             'user_id' => $this->faker->randomElement([1, 2, 3])

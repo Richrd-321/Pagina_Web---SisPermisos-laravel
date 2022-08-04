@@ -21,6 +21,7 @@ class Permisos extends Model
 
     public function registros()
     {
-        return $this->hasMany(Permisos::class);   
+        //return $this->hasMany(Registro::class);   
+        return $this->belongsTo(Registro::class)->select(['id','user_id', 'boleta_id', 'firma']);
     }
 }

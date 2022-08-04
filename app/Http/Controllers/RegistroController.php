@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class RegistroController extends Controller
 {
     // Vista
-    public function index(User $user, Permisos $permisos) {
+    public function index(User $user) {
         //$boletas = Boleta::all();
         $boletas = Boleta::get();
         $permisos = Permisos::get();
@@ -19,7 +19,7 @@ class RegistroController extends Controller
         return view('Registros.index', [
             'user' => $user,
             'boleta' => $boletas,
-            'permisos' => $permisos,
+            'permiso' => $permisos,
             'registros' => $registros
         ]);
     }
@@ -29,19 +29,26 @@ class RegistroController extends Controller
     }
 
     // Registrar
-    public function store(Request $request, User $user, Boleta $boleta, Permisos $permisos){
+    public function store(Request $request, User $user, Boleta $boleta){
         
-       
-        //$permisos = Permisos::where('boleta_id', $boleta->id)->get();
+        
+        $permisos = Permisos::where('boleta_id', $boleta->id)->get();
         dd($permisos);
         
+        $permisos->registros()->create([
+            'horaRegreso' => $request->hora_final,      
+            'permisos_id' => $permisos,
+            'firmaRegistro' =>  $user -> dni
+        ]);
+        
+        /*
         // ALMACENANDO registro con firma en DNI
         Registro::create([
             'horaRegreso' => $request->hora_final,
             'permisos_id' => $permisos->id,
             'firmaRegistro' =>  $user -> dni
         ]);
-       
+        */
 
         // Imprimiendo mensaje y redireccionando
         return back()->with('mensaje', 'Registro Firmado Correctamente');

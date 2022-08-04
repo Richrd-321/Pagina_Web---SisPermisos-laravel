@@ -49,7 +49,7 @@
             <!--    Nro Boletas -->
             <div class="col">
                 <p class="text-gray-800 text-sm mb-3 font-bold mt-5">
-                    {{$permisos->count()}}
+                    {{$permiso->count()}}
                     <span class="font-normal">Nro de Permisos</span>
                 </p>
 
@@ -132,9 +132,9 @@
                                                 </div>
                                                 
                                                 -->
-                                            
-                                            <form action="{{ route('registros.store', ['user' => $user, 'boleta' => $items, 'permisos' => $items->permisos]) }}" class="d-inline formulario-firmar" method="POST" >
+                                            <form action="{{ route('registros.store', ['user' => $user, 'boleta' => $items, 'permiso' => $items->permisos]) }}" class="d-inline formulario-firmar" method="POST" >
                                                 @csrf
+                                                <!--    Input   Hora    -->
                                                 <input 
                                                     id="hora_final" 
                                                     name="hora_final" 

@@ -19,7 +19,7 @@ class RegistroController extends Controller
         return view('Registros.index', [
             'user' => $user,
             'boleta' => $boletas,
-            'permiso' => $permisos,
+            'permisos' => $permisos,
             'registros' => $registros
         ]);
     }
@@ -33,22 +33,25 @@ class RegistroController extends Controller
         
         
         $permisos = Permisos::where('boleta_id', $boleta->id)->get();
-        dd($permisos);
-        
-        $permisos->registros()->create([
-            'horaRegreso' => $request->hora_final,      
-            'permisos_id' => $permisos,
-            'firmaRegistro' =>  $user -> dni
-        ]);
+        //dd($permisos->pluck('id'));
+        $id = $permisos->pluck('id');
         
         /*
-        // ALMACENANDO registro con firma en DNI
-        Registro::create([
-            'horaRegreso' => $request->hora_final,
-            'permisos_id' => $permisos->id,
+        $permisos->registros()->create([
+            'horaRegreso' => $request->hora_final,      
+            'permisos_id' => $id,
             'firmaRegistro' =>  $user -> dni
         ]);
         */
+        
+        
+        // ALMACENANDO registro con firma en DNI
+        Registro::create([
+            'horaRegreso' => $request->hora_final,
+            'permisos_id' => $id,
+            'firmaRegistro' =>  $user -> dni
+        ]);
+        
 
         // Imprimiendo mensaje y redireccionando
         return back()->with('mensaje', 'Registro Firmado Correctamente');

@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('registros', function (Blueprint $table) {
             $table->id();
             $table->string('horaRegreso');
-            $table->foreignId('permisos_id')->constrained()->onDelete('cascade');
             $table->string('firmaRegistro');
+            $table->unsignedBigInteger('permisos_id')->nullable();
+            $table->foreign('permisos_id')->references('id')->on('permisos')->constrained()->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
